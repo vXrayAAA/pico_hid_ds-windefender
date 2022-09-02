@@ -63,19 +63,18 @@ def parseLine(line):
 kbd = Keyboard(usb_hid.devices)
 layout = KeyboardLayoutUS(kbd)
 
-#sleep a the start to allow the device to be recognized by the host computer
+
 time.sleep(.5)
 
 
-# check GPIO0 for program switch
-# easiest way to implement is to run a jumper from pin 0 (GPIO0) to pin3 (GND)
+ #pin3(GND)
 progStatus = False
 progStatusPin = digitalio.DigitalInOut(GP0)
 progStatusPin.switch_to_input(pull=digitalio.Pull.UP)
 progStatus = progStatusPin.value
 
 if(progStatus == True):
-    #not in programming state, run script file
+    
     defaultDelay = 0
     duckyScriptPath = "payload.dd"
     f = open(duckyScriptPath,"r",encoding='utf-8')
